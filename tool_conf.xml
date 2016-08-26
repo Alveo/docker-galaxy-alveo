@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<toolbox>
+  <section id="getext" name="Get Data">
+    <tool file="data_source/upload.xml" />
+  </section>
+  <section id="alveo" name="Alveo">
+  </section>
+  <section id="textutil" name="Text Processing">
+  </section>
+  <section id="convert" name="Convert Formats">
+  </section>
+  <section id="filter" name="Filter and Sort">
+  </section>
+  <section id="features" name="Extract Features">
+  </section>
+  <section id="stats" name="Statistics">
+  </section>
+  <section id="plots" name="Graphics">
+  </section>
+
+</toolbox>
