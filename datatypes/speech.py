@@ -55,7 +55,7 @@ class TextGrid( Text ):
 
     """
 
-    file_ext = "TextGrid"
+    file_ext = "textgrid"
     header = 'File type = "ooTextFile"\nObject class = "TextGrid"\n'
 
     blurb = "Praat TextGrid file"
