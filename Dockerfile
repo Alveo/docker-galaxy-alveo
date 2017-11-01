@@ -28,6 +28,7 @@ ADD alveo-logo-alpha.png $GALAXY_CONFIG_DIR/web/alveo-logo-alpha.png
 ADD datatypes/speech.py /galaxy-central/lib/galaxy/datatypes/
 ADD datatypes/audio /galaxy-central/config/plugins/visualizations/
 ADD datatypes/datatypes_conf.xml /galaxy-central/config/
+ADD datatypes/audio.mako /galaxy-central/templates/webapps/galaxy/dataset/
 
 RUN add-tool-shed --url 'https://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed'
 ADD tool_list.yml $GALAXY_ROOT/alveo_tool_list.yml

@@ -27,3 +27,4 @@ ADD alveo-logo-alpha.png $GALAXY_CONFIG_DIR/web/alveo-logo-alpha.png
 ADD datatypes/speech.py /galaxy-central/lib/galaxy/datatypes/
 ADD datatypes/audio /galaxy-central/config/plugins/visualizations/
 ADD datatypes/datatypes_conf.xml /galaxy-central/config/
+ADD datatypes/audio.mako /galaxy-central/templates/webapps/galaxy/dataset/

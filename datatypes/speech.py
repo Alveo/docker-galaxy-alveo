@@ -1,10 +1,11 @@
 from galaxy.datatypes.text import Text
 from galaxy.datatypes.binary import Binary
-from galaxy.datatypes.metadata import MetadataElement, ListParameter, DictParameter
+from galaxy.datatypes.metadata import MetadataElement, MetadataParameter, ListParameter, DictParameter
 from galaxy import util
 
 import wave
 import re
+import os
 
 import logging
 log = logging.getLogger(__name__)
@@ -15,6 +16,11 @@ class WAV( Binary ):
     file_ext = "wav"
     blurb = "RIFF WAV Audio file"
     is_binary = True
+
+    MetadataElement( name="rate", desc="Sample Rate", param=MetadataParameter, readonly=True, visible=True, optional=True )
+    MetadataElement( name="nframes", desc="Number of Samples", param=MetadataParameter, readonly=True, visible=True, optional=True )
+    MetadataElement( name="nchannels", desc="Number of Channels", param=MetadataParameter, readonly=True, visible=True, optional=True )
+    MetadataElement( name="sampwidth", desc="Sample Width", param=MetadataParameter, readonly=True, visible=True, optional=True )
 
     def get_mime(self):
         """Returns the mime type of the datatype"""
@@ -39,7 +45,25 @@ class WAV( Binary ):
         except wave.Error:
             return False
 
+    def set_meta( self, dataset, overwrite=True, **kwd ):
+        """Set the metadata for this dataset from the file contents
+        """
+
+        fd = wave.open(dataset.dataset.file_name, 'rb')
+        dataset.metadata.rate = fd.getframerate()
+        dataset.metadata.nframes = fd.getnframes()
+        dataset.metadata.sampwidth = fd.getsampwidth()
+        dataset.metadata.nchannels = fd.getnchannels()
+        #dataset.metadata.identifier = os.path.splitext(dataset.dataset.element_identifier)[0]
+        fd.close()
+
+    #def display_data(self, trans, dataset, preview=False, filename=None, to_ext=None, offset=None, ck_size=None, **kwd):
+
+    #    return trans.fill_template( "/dataset/audio.mako", dataset=dataset)
+
+
 Binary.register_sniffable_binary_format('wav', 'wav', WAV)
+
 
 class TextGrid( Text ):
     """Praat Textgrid file for speech annotations
@@ -55,7 +79,7 @@ class TextGrid( Text ):
 
     """
 
-    file_ext = "textgrid"
+    file_ext = "TextGrid"
     header = 'File type = "ooTextFile"\nObject class = "TextGrid"\n'
 
     blurb = "Praat TextGrid file"
