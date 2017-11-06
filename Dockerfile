@@ -2,7 +2,7 @@
 #
 # Version 0.1
 
-FROM bgruening/galaxy-stable
+FROM bgruening/galaxy-stable:17.09
 
 MAINTAINER Steve Cassidy, steve.cassidy@mq.edu.au
 
